@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 @Service
 public class PersonaServiceImpl implements PersonaService {
     @Autowired
@@ -28,7 +29,7 @@ public class PersonaServiceImpl implements PersonaService {
 
     @Override
     public Persona add(Persona p) {
-           return personaRepository.save(p);
+        return personaRepository.save(p);
     }
 
     @Override
