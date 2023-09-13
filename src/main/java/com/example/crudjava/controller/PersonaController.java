@@ -1,20 +1,26 @@
 package com.example.crudjava.controller;
 
 import com.example.crudjava.modelo.Persona;
+import com.example.crudjava.repository.PersonaRepository;
 import com.example.crudjava.service.PersonaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
-//@RequestMapping("/personas")
+//@RequestMapping("/api/personas")
 public class PersonaController {
 
     @Autowired
     private PersonaService personaService;
+
+    @Autowired
+    private PersonaRepository personaRepository;
 
     @GetMapping("/listar")
     public List<Persona> listar() {
@@ -24,6 +30,11 @@ public class PersonaController {
     @PostMapping("/add")
     public Persona agregar(@RequestBody Persona p) {
         return personaService.add(p);
+    }
+
+    @PostMapping("/{id}/retirar")
+    public Persona retirarPersona(@PathVariable int id) {
+        return personaService.cambiarEstado(id);
     }
 
     @GetMapping("/listarId/{id}")

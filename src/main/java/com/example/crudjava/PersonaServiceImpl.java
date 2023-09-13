@@ -3,6 +3,8 @@ package com.example.crudjava;
 import com.example.crudjava.modelo.Persona;
 import com.example.crudjava.repository.PersonaRepository;
 import com.example.crudjava.service.PersonaService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +14,7 @@ import java.util.List;
 public class PersonaServiceImpl implements PersonaService {
     @Autowired
     private PersonaRepository personaRepository;
+
 
 
     @Override
@@ -44,5 +47,14 @@ public class PersonaServiceImpl implements PersonaService {
             personaRepository.delete(p);
         }
         return p;
+    }
+
+    public Persona cambiarEstado(int id) {
+        Persona persona = personaRepository.findById(id);
+        if (persona != null) {
+            persona.setEstado("Retirado");
+            return personaRepository.save(persona);
+        }
+        return  null;
     }
 }
