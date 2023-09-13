@@ -45,4 +45,13 @@ public class PersonaServiceImpl implements PersonaService {
         }
         return p;
     }
+
+    public Persona cambiarEstado(int id) {
+        Persona persona = personaRepository.findById(id);
+        if (persona != null) {
+            persona.setEstado("Retirado");
+            return personaRepository.save(persona);
+        }
+        return null;
+    }
 }

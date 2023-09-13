@@ -16,5 +16,5 @@ public interface PersonaService {
 
     Persona delete(int id);
 
-
+    Persona cambiarEstado(int id);
 }

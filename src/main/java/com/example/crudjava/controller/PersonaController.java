@@ -8,13 +8,15 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 
+
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
-//@RequestMapping("/personas")
+//@RequestMapping("/api/personas")
 public class PersonaController {
 
     @Autowired
     private PersonaService personaService;
+
 
     @GetMapping("/listar")
     public List<Persona> listar() {
@@ -24,6 +26,11 @@ public class PersonaController {
     @PostMapping("/add")
     public Persona agregar(@RequestBody Persona p) {
         return personaService.add(p);
+    }
+
+    @PostMapping("/{id}/retirar")
+    public Persona retirarPersona(@PathVariable int id) {
+        return personaService.cambiarEstado(id);
     }
 
     @GetMapping("/listarId/{id}")
