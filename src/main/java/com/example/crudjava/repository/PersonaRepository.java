@@ -16,7 +16,6 @@ public interface PersonaRepository extends CrudRepository<Persona, Integer> {
 
     void delete(Persona p);
 
-
     Optional<Persona> findById(Long id);
 }
 
